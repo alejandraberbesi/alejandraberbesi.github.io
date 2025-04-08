@@ -1,145 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic page setup -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alejandra Berbesi | Data Dashboard Portfolio</title>
+  <title>Ale Berbesi | Dashboard Portfolio</title>
 
-  <!-- Inline CSS styling -->
+  <!-- Fonts and icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Styling -->
   <style>
-    /* Base styling for the body */
+    :root {
+      --bg-light: #f9f9f9;
+      --text-light: #333;
+      --card-bg-light: #ffffff;
+      --bg-dark: #1e1e1e;
+      --text-dark: #f5f5f5;
+      --card-bg-dark: #2c2c2c;
+      --accent: #6a89cc;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
 
-    /* Header section */
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
     header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: linear-gradient(to right, #6a89cc, #b8e994);
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
       color: white;
-    }
-
-    /* Header title */
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    /* Header subtitle */
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    /* Grid layout for dashboard cards */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    /* Card container for each dashboard */
-    .card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 1.5rem;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 5rem 2rem;
     }
 
-    /* Hover effect for cards */
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    }
-
-    /* Card title */
-    .card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Card description */
-    .card p {
-      font-size: 0.95rem;
-      color: #666;
+    header h1 {
+      font-size: 3rem;
       margin-bottom: 1rem;
     }
 
-    /* Button-style link */
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .toggle-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+    }
+
+    .toggle-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg-light);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s ease, background 0.3s, color 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    body.dark .card {
+      background: var(--card-bg-dark);
+      color: var(--text-dark);
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
     .card a {
       display: inline-block;
-      padding: 0.6rem 1rem;
-      background: #6a89cc;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--accent);
       color: white;
+      border-radius: 6px;
       text-decoration: none;
-      border-radius: 0.4rem;
-      font-weight: bold;
+      font-weight: 600;
       transition: background 0.2s ease;
     }
 
-    /* Button hover effect */
     .card a:hover {
-      background: #4a69bd;
+      background-color: #4a69bd;
     }
 
-    /* Footer styling */
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 2rem 1rem;
       font-size: 0.9rem;
-      color: #999;
+      opacity: 0.7;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
-<body>
-  <!-- Header section with your name and intro -->
+<body class="light">
+
+  <!-- Dark mode toggle button -->
+  <div class="toggle-container">
+    <button class="toggle-button" onclick="toggleMode()" title="Toggle dark mode">
+      <i id="mode-icon" class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Hero header -->
   <header>
-    <h1>Hello! I'm Alejandra Berbesi</h1>
-    <p>Welcome to my interactive dashboard portfolio</p>
+    <h1>Ale Berbesi</h1>
+    <p>This portfolio showcases interactive dashboards built with static datasets using Plotly and modern web tools.</p>
   </header>
 
-  <!-- Section displaying all dashboard cards -->
-  <section class="dashboard-grid">
+  <!-- Dashboards section -->
+  <section class="section">
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2>Iris Dataset Dashboard</h2>
+        <p>Explore feature relationships and classifications in this flower dataset.</p>
+        <a href="dashboard1/">View Dashboard</a>
+      </div>
 
-    <!-- First dashboard card -->
-    <div class="card">
-      <h2>Iris Dataset Dashboard</h2>
-      <p>A simple visualization of the famous Iris flower dataset using Plotly.</p>
-      <a href="dashboard1/">View Dashboard</a>
+      <div class="card">
+        <h2>Life Expectancy Dashboard</h2>
+        <p>Track global health trends with country comparisons and time series visualizations.</p>
+        <a href="dashboard2/">View Dashboard</a>
+      </div>
+
+      <!-- Add more dashboard cards as needed -->
     </div>
-
-    <!-- Second dashboard card -->
-    <div class="card">
-      <h2>Life Expectancy Dashboard</h2>
-      <p>Explore trends in global life expectancy across countries and years.</p>
-      <a href="dashboard2/">View Dashboard</a>
-    </div>
-
-    <!-- To add more dashboards, copy the block below and update as needed -->
-    <!--
-    <div class="card">
-      <h2>New Dashboard Title</h2>
-      <p>Short description of what the dashboard shows.</p>
-      <a href="dashboard3/">View Dashboard</a>
-    </div>
-    -->
-
   </section>
 
-  <!-- Footer with attribution -->
+  <!-- Footer -->
   <footer>
-    Made with love by Alejandra · Hosted on GitHub Pages
+    Built by Ale Berbesi · <a href="https://www.linkedin.com/in/alejandra-berbesi-becerra" target="_blank">LinkedIn</a> · Hosted on GitHub Pages
   </footer>
+
+  <!-- JavaScript for dark mode -->
+  <script>
+    function toggleMode() {
+      const body = document.body;
+      const icon = document.getElementById('mode-icon');
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+
+      // Toggle icon between moon and sun
+      if (body.classList.contains("dark")) {
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+      } else {
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+      }
+    }
+  </script>
+
 </body>
 </html>
