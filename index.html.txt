@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Dashboards</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    a { font-size: 18px; display: block; margin: 10px 0; color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Dashboards</h1>
+  <p>Click below to view:</p>
+
+  <a href="./dashboard1/">🔎 Dashboard 1: Iris Scatter Plot</a>
+</body>
+</html>
