@@ -1,59 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic page setup -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alejandra Berbesi | Dashboards</title>
+  <title>Alejandra Berbesi | Data Dashboard Portfolio</title>
+
+  <!-- Inline CSS styling -->
   <style>
+    /* Base styling for the body */
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #f9f9f9, #e8f0ff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: #f5f7fa;
+      color: #333;
     }
-    .container {
+
+    /* Header section */
+    header {
       text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(to right, #6a89cc, #b8e994);
+      color: white;
+    }
+
+    /* Header title */
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    /* Header subtitle */
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Grid layout for dashboard cards */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
       padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* Card container for each dashboard */
+    .card {
       background: white;
       border-radius: 1rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    h1 {
-      font-size: 2.5rem;
-      color: #2b3a67;
+
+    /* Hover effect for cards */
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    /* Card title */
+    .card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Card description */
+    .card p {
+      font-size: 0.95rem;
+      color: #666;
       margin-bottom: 1rem;
     }
-    p {
-      font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 2rem;
-    }
-    a {
+
+    /* Button-style link */
+    .card a {
       display: inline-block;
-      margin: 0.5rem;
-      padding: 0.8rem 1.2rem;
-      background: #2b3a67;
+      padding: 0.6rem 1rem;
+      background: #6a89cc;
       color: white;
       text-decoration: none;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      transition: background 0.3s ease;
+      border-radius: 0.4rem;
+      font-weight: bold;
+      transition: background 0.2s ease;
     }
-    a:hover {
-      background: #3c4f8a;
+
+    /* Button hover effect */
+    .card a:hover {
+      background: #4a69bd;
+    }
+
+    /* Footer styling */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #999;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
+  <!-- Header section with your name and intro -->
+  <header>
     <h1>Hello! I'm Alejandra Berbesi</h1>
-    <p>Welcome to my portfolio of interactive dashboards. Built with Plotly, hosted on GitHub Pages ✨</p>
-    <a href="dashboard1/">📊 Iris Dashboard</a>
-    <a href="dashboard2/">📈 Life Expectancy Dashboard</a>
-  </div>
+    <p>Welcome to my interactive dashboard portfolio</p>
+  </header>
+
+  <!-- Section displaying all dashboard cards -->
+  <section class="dashboard-grid">
+
+    <!-- First dashboard card -->
+    <div class="card">
+      <h2>Iris Dataset Dashboard</h2>
+      <p>A simple visualization of the famous Iris flower dataset using Plotly.</p>
+      <a href="dashboard1/">View Dashboard</a>
+    </div>
+
+    <!-- Second dashboard card -->
+    <div class="card">
+      <h2>Life Expectancy Dashboard</h2>
+      <p>Explore trends in global life expectancy across countries and years.</p>
+      <a href="dashboard2/">View Dashboard</a>
+    </div>
+
+    <!-- To add more dashboards, copy the block below and update as needed -->
+    <!--
+    <div class="card">
+      <h2>New Dashboard Title</h2>
+      <p>Short description of what the dashboard shows.</p>
+      <a href="dashboard3/">View Dashboard</a>
+    </div>
+    -->
+
+  </section>
+
+  <!-- Footer with attribution -->
+  <footer>
+    Made with love by Alejandra · Hosted on GitHub Pages
+  </footer>
 </body>
 </html>
